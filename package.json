@@ -1,19 +1,34 @@
 {
   "name": "electricity-topups",
   "version": "1.0.0",
-  "description": "",
+  "description": "Create a web app, to help your local Municipality to track electricity usage per household. Each month the Municipality gives each household 50 units each for free. Households can topup if they need extra electricity.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test" : "mocha"
+    "test": "mocha"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
-    "express-handlebars": "^5.3.3",
+    "body-parser": "^1.19.1",
+    "command": "0.0.5",
+    "express": "^4.17.2",
+    "express-handlebars": "^5.3.5",
     "mocha": "^9.1.4",
+    "nodemon": "^2.0.15",
     "pg": "^8.7.1"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Okuhle-96/ElectricityTopupTrickss.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Okuhle-96/ElectricityTopupTrickss/issues"
+  },
+  "homepage": "https://github.com/Okuhle-96/ElectricityTopupTrickss#readme"
 }
