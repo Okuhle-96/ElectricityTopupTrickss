@@ -21,8 +21,8 @@ module.exports = function(pool) {
 
 	// return the data for a given balance
 	async function meterData(meterId) {
-		const meter = await pool.query(`select * from electricity_meter where id = $1`,[meterId]);
-		return meter.rows;
+		const meters = await pool.query(`select * from electricity_meter where id = $1`,[meterId]);
+		return meters.rows;
 	}
 
 	// topup electricity

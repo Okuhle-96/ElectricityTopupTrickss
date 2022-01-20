@@ -51,7 +51,7 @@ describe("The Electricity meter", function() {
 	it("should see all the appliances", async function() {
 
 		const electricityMeters = ElectricityMeters(pool);
-		const appliances = await electricityMeters.appliances();
+		const appliance = await electricityMeters.appliances();
 		
 		assert.deepStrictEqual([
 			  {
@@ -80,7 +80,7 @@ describe("The Electricity meter", function() {
 			    rate: '2.70'
 			  }
 			]
-			, appliances);
+			, appliance);
 
 	});
 
