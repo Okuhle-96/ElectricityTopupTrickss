@@ -8,28 +8,77 @@ module.exports = function(pool) {
 	}
 
 	// for a given street show all the meters and their balances
-	function streetMeters(streetId) {
-
+	async function streetMeters(streetId) {
+		const strMeter = await pool.query(`select balance from electricity_meter where street_id = $1`, [streetId])
+		return strMeter.rows;
 	}
 
 	// return all the appliances
-	function appliances() {
-
+	async function appliances() {
+		const appliances = await pool.query(`select * from appliance`);
+		return appliances.rows;
 	}
 
-	// increase the meter balance for the meterId supplied
-	function topupElectricity(meterId, units) {
-
-	}
-	
 	// return the data for a given balance
-	function meterData(meterId) {
-	
+	async function meterData(meterId) {
+		const meter = await pool.query(`select * from electricity_meter where id = $1`,[meterId]);
+		return meter.rows;
 	}
+
+	// topup electricity
+	async function topupElectricity(meterId, units) {
+		const topup = await pool.query(`update electricity_meter set balance = $1 where id = $2`, [units, meterId]);
+		return topup.rows;
+	}
+
 
 	// decrease the meter balance for the meterId supplied
-	function useElectricity(meterId, units) {
+	async function useElectricity(meterId, units) {
+		const newBalance = await pool.query(`
+		Update electricity_meter.balance 
+		sum(appliance.rate) - sum(electricity_meter.balance)
+		as total from electricity_meter 
+		inner join appliance 
+		on electricity_meter.id = appliance.id`, [meterId, units])
+		return newBalance.rowCount;
+	}
+
+	// calculate min balance
+	async function lowestBalanceMeter(){
+		const minBal = await pool.query(`
+		select street_name 
+		from street 
+		join electricity_meter 
+		on electricity_meter.street_id = street.id 
+		order by asc 
+		limit 1`);
+		return minBal;
+	}
+
+	// calculate highest balance
+	async function highestBalanceStreet(){
+		const maBal = await pool.query(`
+		select sum(balance) as highest_bal 
+		from electricity_meter 
+		join street on street.id = electricity_meter.street_id 
+		group by name 
+		order by desc
+		limit 1`);
+		return maBal;
 	
+	}
+
+	// calculate total balance
+	async function totalStreetBalance(streetId){
+		const totalStrBal = `
+		select sum(rate * balance) as total_bal
+		from street
+		join street_item on street_item.street_id = street.id
+		join appliance on street_id = street_item.street_id
+		where street.id = $1`
+
+		const total = await pool.query(totalStrBal, [streetId]);
+		return total;
 	}
 
 	return {
@@ -38,7 +87,10 @@ module.exports = function(pool) {
 		appliances,
 		topupElectricity,
 		meterData,
-		useElectricity
+		useElectricity,
+		lowestBalanceMeter,
+		highestBalanceStreet,
+		totalStreetBalance
 	}
 
 
