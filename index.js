@@ -8,7 +8,7 @@ const PORT =  process.env.PORT || 3017;
 
 const ElectricityMeters = require('./electricity-meters');
 
-const connectionString = process.env.DATABASE_URL || 'postgresql://localhost:5432/topups';
+const connectionString = process.env.DATABASE_URL || 'postgresql://coderr:1996@localhost:5432/topups_db';
 
 const pool = new Pool({
     connectionString  
