@@ -1,14 +1,22 @@
-<h2>Streets</h2>
 
-<table>
+
+<section class="container">
+
+	<h2 class="center sub">Streets</h2>
+
+<table class="streets center">
 {{#each streets}}
-<tr>
-	<td>
+<tr >
+	
+		<td class="name">
 		{{name}}
 	</td>
 	<td>
-		<a href="/meters/{{id}}">Meters in street</a>
+		<a href="/meters/{{id}}">Meters in Street</a>
 	</td>
+	
 </tr>
 {{/each}}
 </table>
+
+</section>

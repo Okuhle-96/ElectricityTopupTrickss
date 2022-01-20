@@ -1,10 +1,95 @@
 body {
 	color: aliceblue;
 	background-color: lightseagreen;
-	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-.container {
-	margin: auto;
-	width: 40em;
+.nav {
+	padding-top: 20px;
 }
+
+.nav  ul{
+	display: flex;
+	margin: 50px;
+	padding-right: 30px;
+}
+
+.nav ul li {
+	padding: 30px;
+	color: whitesmoke;
+	list-style: none;
+	font-weight: bolder;
+}
+
+.nav ul li a {
+	text-decoration: none;
+	color: whitesmoke;
+	font-size: 17px;
+}
+
+.nav ul li a:hover {
+	color: black;
+}
+
+.heading {
+	color: yellow;
+}
+
+.sub {
+	color: white;
+	font-weight: bolder;
+	text-transform: uppercase;
+}
+
+table {
+	/* display: block; */
+	background-color: slategray;
+	padding: 100px;
+	color: whitesmoke;
+	margin-top: 50px;
+}
+
+td {
+	margin-bottom: 15px;
+}
+
+.name {
+	text-decoration: whitesmoke;
+	background-color: black;
+	color: whitesmoke;
+	font-weight: bolder;
+	border: 0;
+	padding: 20px;
+	margin-bottom: 15px;
+	margin-left: -5px;
+}
+
+td a {
+	text-decoration: none;
+	background-color: whitesmoke;
+	color: black;
+	font-weight: bolder;
+	padding: 20px;
+}
+
+td a:hover{
+	text-decoration: none;
+	background-color: yellow;
+	color: black;
+	font-weight: bolder;
+	padding: 20px;
+}
+
+.words {
+	font-weight: bolder;
+}
+
+th {
+
+	padding: 10px;
+	color :yellow;
+	font-size: 20px;
+}
+
+
+
+
