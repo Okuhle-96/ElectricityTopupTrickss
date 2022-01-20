@@ -35,12 +35,12 @@ module.exports = function(pool) {
 	// decrease the meter balance for the meterId supplied
 	async function useElectricity(meterId, units) {
 		const newBalance = await pool.query(`
-		Update electricity_meter.balance 
+		update electricity_meter.balance 
 		sum(appliance.rate) - sum(electricity_meter.balance)
 		as total from electricity_meter 
 		inner join appliance 
 		on electricity_meter.id = appliance.id`, [meterId, units])
-		return newBalance.rowCount;
+		return newBalance.rows;
 	}
 
 	// calculate min balance
@@ -65,7 +65,6 @@ module.exports = function(pool) {
 		order by desc
 		limit 1`);
 		return maBal;
-	
 	}
 
 	// calculate total balance
